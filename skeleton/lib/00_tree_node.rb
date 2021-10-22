@@ -32,17 +32,30 @@ class PolyTreeNode
 
     def dfs(target)
         return self if self.value == target
-        # debugger
         children.each do |child|
             search = child.dfs(target)
-            return search if search != nil   # why not search.value == target
+            return search if search != nil
+        end
+        nil
+    end
+
+    def bfs(target)
+        queue = []
+        queue << self
+        until queue.empty?
+            val = queue.shift
+            if val.value == target
+                return val
+            else
+                val.children.each {|child| queue << child }
+            end
         end
         nil
     end
     
-    def inspect
-        [self.value, self.children]
-    end
+    # def inspect
+    #     [self.value, self.children]
+    # end
 
     
 
