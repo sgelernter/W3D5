@@ -47,7 +47,7 @@ class PolyTreeNode
             if val.value == target
                 return val
             else
-                val.children.each {|child| queue << child } #return child if child.value == target
+                val.children.each {|child| queue << child } 
             end
         end
         nil
