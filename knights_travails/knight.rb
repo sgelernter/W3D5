@@ -5,10 +5,9 @@ require_relative "./tree_node.rb"
 #check valid position (store past moves)
 class Knight
 
-    attr_reader :move_tree
+    attr_reader :move_tree, :considered_positions, :root_node
     def initialize(pos) #accepts array
         @root_node = PolyTreeNode.new(pos) 
-        #@grid = Array.new(8) {Array.new(8)}
         @considered_positions = [pos] 
         @move_tree = self.build_move_tree
         
@@ -58,16 +57,14 @@ class Knight
                 @considered_positions << move
                 move_node = PolyTreeNode.new(move)
                 move_node.parent = node
-                tree << move_node
                 queue << move_node
             end
         end
         tree
     end
-
 end
 
 
 knight = Knight.new([0,0])
-
+p knight.root_node
 p knight.move_tree.count
